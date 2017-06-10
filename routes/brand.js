@@ -9,4 +9,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/list', brandController.brandList);
 
+router.get('/count', brandController.brandCount);
+
+router.get('/save', brandController.brandSave);
+
 module.exports = router;
