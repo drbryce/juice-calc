@@ -14,6 +14,13 @@ var brand = require('./routes/brand');
 
 var app = express();
 
+//mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = "mongodb://testuser:testpass@ds119302.mlab.com:19302/juice_calc";
+mongoose.connect(mongoDB);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error: '));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
