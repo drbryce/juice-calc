@@ -7,6 +7,14 @@ var BrandSchema = Schema(
         shortname: {type: String, required: true},
         longname: {type: String, required: true}
     }
+
+
 );
 
-module.exports = mongoose.model('Brand', BrandSchema);
+BrandSchema
+    .virtual('url')
+    .get(function () {
+        return '/brand/' + this._id;
+    });
+
+module.exports = mongoose.model('Brand', BrandSchema, 'Brand');

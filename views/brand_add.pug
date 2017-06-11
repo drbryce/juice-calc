@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  form(action='/brand/add', method='POST')
+    p
+      |  shortname (abc):
+      input(type='text', name='sname', value='')
+    p  
+      |  longname (Awesome Boutique Company):
+      input(type='text', name='lname', value='')
+    input(type='submit', value='Submit')  

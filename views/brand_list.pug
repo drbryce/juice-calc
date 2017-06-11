@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each brand in result
+    li
+      a(href=brand.url) #{brand.longname}
+      |  (#{brand.shortname}) 
+      a(href='/brand/delete/' + brand.id) delete
+    
+  else
+    li There are no results.

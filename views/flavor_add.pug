@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  form(action='/flavor/add', method='POST')
+    p
+      |  flavor name:
+      input(type='text', name='flavorname', value='')
+    p
+      | brand:
+      select(name='brand')
+        each brand in result
+          option(value=brand.id) #{brand.shortname} - #{brand.longname}
+    input(type='submit', value='Submit')  

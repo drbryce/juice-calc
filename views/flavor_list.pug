@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each flavor in result
+    li
+      a(href=flavor.url) #{flavor.longname}
+      |  #{flavor.brand.shortname} #{flavor.name} 
+      a(href='/flavor/delete/' + flavor.id) delete
+    
+  else
+    li There are no results.
