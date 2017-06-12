@@ -1,0 +1,18 @@
+extends layout
+block content
+  script
+    include ../public/js/addrecipe.js
+  h1= title
+  form(action='/recipe/add', method='POST')
+    div(id="flavorList")
+      p(id="individualFlav")
+        |  flavor name:
+        select(name='flavor')
+          each flavor in flavors
+            option(value=flavor.id) #{flavor.brand.shortname} - #{flavor.name}
+        | percentage:
+        input(type='text', name='flavorname', value='')
+  p
+    //a(href="" id="addFlavorButton" onclick="myfunction();return false;") 
+      | add flavor    
+    input(type='submit', value='Submit')  
