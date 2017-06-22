@@ -1,6 +1,6 @@
 extends layout
 mixin flavorLine
-  div(class="individualFlavor")
+  div(class="individualFlavor" style="display:none")
     p flavor name:
       select(name='flavor')
         each flavor in flavors
