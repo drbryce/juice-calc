@@ -1,10 +1,7 @@
-//var addFlavorButton = document.getElementById('addFlavorButton');
-
-var myfunction = function() {
-    var flavorDiv = document.getElemenyById('flavorDiv');
+function myfunction () {
+    var flavorDiv = document.getElementById('flavorList').lastChild;
+    alert('did the thing');
     var cln = flavorDiv.cloneNode(true);
 
-    document.getElementById('individualFlav').appendChild(cln);
+    document.getElementById('flavorList').appendChild(cln);
 };
-
-//addFlavorButton.onclick = myfunction();

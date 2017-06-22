@@ -1,19 +1,22 @@
 extends layout
+mixin flavorLine
+  div(class="individualFlavor")
+    p flavor name:
+      select(name='flavor')
+        each flavor in flavors
+          option(value=flavor.id) #{flavor.brand.shortname} - #{flavor.name}
+      | percentage:
+      input(type='text', name='flavorname', value='')
+
 block content
+
   script
     include ../public/js/addrecipe.js
   h1= title
   form(action='/recipe/add', method='POST')
     div(id="flavorList")
-      p(id="individualFlav")
-        |  flavor name:
-        select(name='flavor')
-          each flavor in flavors
-            option(value=flavor.id) #{flavor.brand.shortname} - #{flavor.name}
-        | percentage:
-        input(type='text', name='flavorname', value='')
+      +flavorLine
   p
-    a(href="" id="addFlavorButton" onclick="myfunction();return false;") 
-      | add flavor
+    input(type="button" id="addFlavorButton" onclick="myfunction()" value="add flavor") 
   p    
     input(type='submit', value='Submit')  
