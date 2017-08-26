@@ -12,6 +12,13 @@ exports.flavorList = function(req, res, next) {
     });
 };
 
+exports.flavorListJSON = function(req, res, next) {
+   Flavor.find().sort('brand name').exec(function (err, result) {
+       if(err) { return next(err); }
+       res.json(result);
+    });
+};
+
 exports.flavorAdd = function(req, res, next) {
        Brand.find().exec(function (err, result) {
        if(err) { return next(err); }
@@ -25,13 +32,13 @@ exports.flavorAddPost = function(req, res, next) {
     mayberesult.save(function(err) {
         if(err) throw err;
         
-        res.redirect('/flavor/add');
+        res.send(201);
     });
 };
 
 exports.flavorDelete = function(req, res, next) {
     Flavor.findByIdAndRemove(req.params.itemid, function(err) {
         if(err) throw err;
-        res.redirect('/flavor/list');
+        res.send(200);
     });
 };

@@ -10,6 +10,13 @@ exports.brandList = function(req, res, next) {
     });
 };
 
+exports.brandListJSON = function(req, res, next) {
+   Brand.find().sort('shortname').exec(function (err, result) {
+       if(err) { return next(err); }
+       res.json(result);
+    });
+};
+
 exports.brandCount = function(req, res, next) {
     var mayberesult = Brand.find();
     res.send('' + mayberesult);
@@ -29,17 +36,18 @@ exports.brandAdd = function(req, res, next) {
 };
 
 exports.brandAddPost = function(req, res, next) {
-        console.log(req.body);
     var mayberesult = Brand({shortname: req.body.sname, longname: req.body.lname});
+    console.log(req.body);
     mayberesult.save(function(err) {
         if(err) throw err;
-        res.redirect('/brand/list');
+        res.send('it\'s gone');
     });
 };
 
 exports.brandDelete = function(req, res, next) {
+    //console.log(req)
     Brand.findByIdAndRemove(req.params.itemid, function(err) {
         if(err) throw err;
-        res.redirect('/brand/list');
+        res.send(200);
     });
 };

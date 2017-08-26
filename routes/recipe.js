@@ -11,6 +11,12 @@ router.get('/list', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/list/:recipeID', recipeController.recipeGet)
+
+router.get('/listJSON', recipeController.recipeListJSON)
+
+router.delete('/delete/:itemid', recipeController.recipeDelete);
+
 router.get('/add', recipeController.recipeAdd);
 
 router.post('/add', recipeController.recipeAddPost);
