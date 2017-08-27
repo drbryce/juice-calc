@@ -1,24 +1,24 @@
-var express = require('express');
-var router = express.Router();
-var AuthController = require('../controllers/authController');
+var express = require('express')
+var router = express.Router()
+var AuthController = require('../controllers/authController')
 
-var brandController = require('../controllers/brandController');
+var brandController = require('../controllers/brandController')
 
 router.get('/', function(req, res, next) {
-  res.redirect('/brand/list');
-});
+  res.redirect('/brand/list')
+})
 
-router.get('/listjson', AuthController.checkToken, brandController.brandListJSON);
+router.get('/listjson', AuthController.checkSession, brandController.brandListJSON)
 
-router.get('/count', brandController.brandCount);
+router.get('/count', brandController.brandCount)
 
-router.get('/save', brandController.brandSave);
+router.get('/save', brandController.brandSave)
 
-router.get('/add', brandController.brandAdd);
+router.get('/add', brandController.brandAdd)
 
-router.post('/add', AuthController.checkToken, brandController.brandAddPost);
+router.post('/add', AuthController.checkSession, brandController.brandAddPost)
 
-router.delete('/delete/:itemid', brandController.brandDelete);
+router.delete('/delete/:itemid', brandController.brandDelete)
 
 
-module.exports = router;
+module.exports = router
