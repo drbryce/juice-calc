@@ -14,7 +14,7 @@ router.post('/login',  function(req, res, next) {
         jwt.sign({ username: req.body.username }, process.env.SECRET_KEY, function(err, token) {
           if (err) throw err;
           //respond with token
-          res.status(200).send(JSON.stringify({ 'token': token }));
+          res.cookie('juice-calc-token',token, {expires: new Date(Date.now() + 60 * 1000)}).sendStatus(200);
         })
       } else {
         res.sendStatus(401); //invalid login

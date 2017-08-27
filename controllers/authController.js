@@ -20,8 +20,12 @@ exports.validateUser = function(username, password, done) {
 }
 
 exports.checkToken = function (req, res, next) {
+  console.log('cookies: ' + JSON.stringify(req.cookies));
   jwt.verify(req.headers.token, process.env.SECRET_KEY, function(err, decoded) {
-    if (err) res.sendStatus(401); //bad token
+    if (err) {
+      res.clearCookie('juice-calc-token');
+      res.sendStatus(401); //bad token
+    }
     else next();  
   });
 }
