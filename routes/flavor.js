@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/list', AuthController.checkToken, flavorController.flavorList)
 
-router.get('/listJSON', flavorController.flavorListJSON)
+router.get('/listJSON', AuthController.checkToken, flavorController.flavorListJSON)
 
 router.get('/add', flavorController.flavorAdd)
 
