@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.redirect('/brand/list')
 })
 
-router.get('/listjson', AuthController.checkSession, brandController.brandListJSON)
+router.get('/listjson', AuthController.checkToken, brandController.brandListJSON)
 
 router.get('/count', brandController.brandCount)
 
@@ -16,9 +16,9 @@ router.get('/save', brandController.brandSave)
 
 router.get('/add', brandController.brandAdd)
 
-router.post('/add', AuthController.checkSession, brandController.brandAddPost)
+router.post('/add', AuthController.checkToken, brandController.brandAddPost)
 
-router.delete('/delete/:itemid', brandController.brandDelete)
+router.delete('/delete/:itemid', AuthController.checkToken, brandController.brandDelete)
 
 
 module.exports = router

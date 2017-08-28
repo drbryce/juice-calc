@@ -24,7 +24,7 @@ router.post('/login',  function(req, res, next) {
 })
 
 
-router.get('/checktoken', AuthController.checkSession,  function(req, res) {
+router.get('/checktoken', AuthController.checkToken,  function(req, res) {
 
   res.sendStatus(200)
 })
