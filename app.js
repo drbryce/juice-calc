@@ -8,19 +8,19 @@ var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken')
-process.env.SECRET_KEY = 'supersecretkey'
 var index = require('./routes/index')
 var users = require('./routes/users')
 var flavor = require('./routes/flavor')
 var recipe = require('./routes/recipe')
 var brand = require('./routes/brand')
 var User = require('./models/user')
+var config = require('./config')
 
 var app = express()
 
 //mongoose connection
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/juice_calc')
+mongoose.connect(config.mongoString)
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error: '))
 

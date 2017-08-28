@@ -34,7 +34,6 @@ exports.recipeAddPost = function(req, res, next) {
 exports.recipeListJSON = function(req, res, next) {
    Recipe.find().populate('flavor ','brand').exec(function (err, result) {
        if(err) { return next(err); }
-       console.log(result)
        res.json(result);
     });
 };

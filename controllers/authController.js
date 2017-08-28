@@ -1,6 +1,7 @@
 var express = require('express')
 var jwt = require('jsonwebtoken')
 var User = require('../models/user')
+var config = require('../config')
 
 exports.validateUser = function(username, password, callback) {
   User.getUserByUsername(username, function(err, user) {
@@ -21,7 +22,7 @@ exports.validateUser = function(username, password, callback) {
 }
 
 exports.checkToken = function (req, res, next) {
-  jwt.verify(req.headers.token, process.env.SECRET_KEY, function(err, decoded) {
+  jwt.verify(req.headers.token, config.secret, function(err, decoded) {
     if (err) {
       res.sendStatus(401); //bad token
     }
@@ -29,17 +30,11 @@ exports.checkToken = function (req, res, next) {
   })
 }
 
-
 exports.checkSession = function (req, res, next) {
-  console.log('cookies: ' + JSON.stringify(req.headers))
   if(req.isAuthenticated()) {
-    console.log('success')
     return next()
   } else {
-    console.log('fail')
     res.sendStatus(401)
   }
 }
-
-
 
