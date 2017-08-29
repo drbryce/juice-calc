@@ -1,24 +1,14 @@
 var express = require('express');
 var router = express.Router();
-
+var AuthController = require('../controllers/authController')
 var recipeController = require('../controllers/recipeController');
 
-router.get('/', function(req, res, next) {
-  res.redirect('/list');
-});
+router.get('/list/:recipeID', AuthController.checkToken, recipeController.recipeGet)
 
-router.get('/list', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/listJSON', AuthController.checkToken, recipeController.recipeListJSON)
 
-router.get('/list/:recipeID', recipeController.recipeGet)
+router.delete('/delete/:itemid', AuthController.checkToken, recipeController.recipeDelete)
 
-router.get('/listJSON', recipeController.recipeListJSON)
+router.post('/add', AuthController.checkToken, recipeController.recipeAddPost)
 
-router.delete('/delete/:itemid', recipeController.recipeDelete);
-
-router.get('/add', recipeController.recipeAdd);
-
-router.post('/add', recipeController.recipeAddPost);
-
-module.exports = router;
+module.exports = router

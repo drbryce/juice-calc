@@ -13,11 +13,7 @@ router.get('/list', AuthController.checkToken, flavorController.flavorList)
 
 router.get('/listJSON', AuthController.checkToken, flavorController.flavorListJSON)
 
-router.get('/add', flavorController.flavorAdd)
-
 router.post('/add', AuthController.checkToken, flavorController.flavorAddPost)
-
-router.get('/delete/:itemid', flavorController.flavorDelete)
 
 router.delete('/delete/:itemid', AuthController.checkToken, flavorController.flavorDelete)
 
