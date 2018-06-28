@@ -19,7 +19,9 @@ var RecipeSchema = Schema(
             percentage: {type: Number, required: true},
             flavor: {type: Schema.ObjectId, ref: 'Flavor', autopopulate: true}
     }],
-        notes: {type: String}
+        notes: {type: String},
+        lastMixed: {type: Date},
+        rating: {type: Number}
     }
 );
 

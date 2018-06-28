@@ -11,4 +11,8 @@ router.delete('/delete/:itemid', AuthController.checkToken, recipeController.rec
 
 router.post('/add', AuthController.checkToken, recipeController.recipeAddPost)
 
+router.post('/rating/:itemid', AuthController.checkToken, recipeController.setRating)
+
+router.post('/mixed/:itemid', AuthController.checkToken, recipeController.setMixed)
+
 module.exports = router

@@ -51,3 +51,17 @@ exports.recipeDelete = function(req, res, next) {
         res.send(200);
     });
 };
+
+exports.setRating = function(req, res, next) {
+    Recipe.update({ _id: req.params.itemid }, { rating: req.body.rating }, null, function(err) {
+        if(err) throw err
+        res.sendStatus(200)
+    })
+}
+
+exports.setMixed = function(req, res, next) {
+    Recipe.update({ _id: req.params.itemid }, { lastMixed: Date.now() }, null, function(err) {
+        if(err) throw err
+        res.sendStatus(200)
+    })
+}
